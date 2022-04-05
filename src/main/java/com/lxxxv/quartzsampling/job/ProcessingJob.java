@@ -1,14 +1,11 @@
 package com.lxxxv.quartzsampling.job;
 
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.quartz.*;
 import org.springframework.scheduling.quartz.QuartzJobBean;
 
 import com.lxxxv.quartzsampling.Semaphore;
 import com.lxxxv.quartzsampling.Semaphore.StatusType;
-
-import java.util.concurrent.ExecutionException;
 
 @Slf4j
 public class ProcessingJob extends QuartzJobBean implements InterruptableJob
@@ -41,7 +38,7 @@ public class ProcessingJob extends QuartzJobBean implements InterruptableJob
         if (null == semaphore.getMap().get("STATUS") || StatusType.FINISH == semaphore.getMap().get("STATUS"))
         {
             semaphore.getMap().put("STATUS", StatusType.START);
-            new ProcessingService().execute();
+            new ProcessingTask().execute();
             semaphore.getMap().put("STATUS", StatusType.FINISH);
         }
     }
