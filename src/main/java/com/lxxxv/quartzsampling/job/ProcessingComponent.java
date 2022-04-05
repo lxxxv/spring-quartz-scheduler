@@ -7,6 +7,7 @@ import java.io.IOException;
 
 import org.quartz.*;
 import org.quartz.impl.StdSchedulerFactory;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import javax.annotation.PostConstruct;
 
@@ -16,9 +17,9 @@ import lombok.extern.slf4j.Slf4j;
 import com.lxxxv.quartzsampling.DateUtils;
 
 @Slf4j
-@Controller
+@Component
 @RequiredArgsConstructor
-public class ProcessingController
+public class ProcessingComponent
 {
     public static final Date START_UP_DATETIME = Date.from
     (

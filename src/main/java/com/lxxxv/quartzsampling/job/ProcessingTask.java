@@ -8,13 +8,18 @@ public class ProcessingTask
 {
     private final Semaphore semaphore = Semaphore.getINSTANCE();
 
+    public ProcessingTask()
+    {
+        System.out.println("creator : " + Thread.currentThread().getName() + " " + "create : " + this);
+    }
+
     public void execute()
     {
         System.out.println("execute : " + this);
 
         try
         {
-            Thread.sleep(3000);
+            Thread.sleep(5000);
         }
         catch(InterruptedException e)
         {

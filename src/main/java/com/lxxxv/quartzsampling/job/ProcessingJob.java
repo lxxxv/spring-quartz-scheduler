@@ -16,7 +16,7 @@ public class ProcessingJob extends QuartzJobBean implements InterruptableJob
 
     public ProcessingJob()
     {
-        System.out.println("create : " + this);
+        System.out.println("creator : " + Thread.currentThread().getName() + " " + "create : " + this);
     }
 
     @Override
