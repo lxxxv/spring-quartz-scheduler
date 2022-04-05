@@ -36,11 +36,11 @@ public class ProcessingController
             StdSchedulerFactory stdSchedulerFactory = new StdSchedulerFactory(this.getScheduleProperties());
             Scheduler scheduler = stdSchedulerFactory.getScheduler();
 
-            scheduler.start();
-
-            JobDetail jobDetail = buildJobDetail(ProcessingJob.class, ProcessingJob.class.getSimpleName());
+            JobDetail jobDetail = buildJobDetail(ProcessingJob.class, "ProcessingJob");
             if (scheduler.checkExists(jobDetail.getKey())) scheduler.deleteJob(jobDetail.getKey());
             scheduler.scheduleJob(jobDetail, buildCronJobTrigger(1));
+
+            scheduler.start();
         }
         catch (SchedulerException e)
         {
